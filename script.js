@@ -1,8 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
 
-console.log(process.env.API_KEY)
-
 async function test() {
     const configuration = new Configuration({
       apiKey: process.env.API_KEY,
@@ -10,12 +8,12 @@ async function test() {
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: "Say this is a test",
+      prompt: "Describe the color red to a blind person",
       temperature: 0,
-      max_tokens: 7,
+      max_tokens: 100,
     })
 
-    console.log(response)
+    console.log(response.data.choices)
 }
 
 test()
